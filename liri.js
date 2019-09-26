@@ -20,59 +20,77 @@ var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
 var axios = require("axios");
 var fs = require("fs");
+var moment = require("moment");
+
 
 var command = process.argv[2]
 var query = process.argv[3]
 
 function concertThis(artist) {
-    console.log("looking for concerts");
+    console.log("------------------------------------");
+    console.log("Looking for concerts...");
+    console.log("------------------------------------");
+
     axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")
     //handling a promise
     .then(function(concertResponse){
         for (let index = 0; index < concertResponse.data.length; index++) {
-            console.log(concertResponse.data[index].venue.name)
-            console.log(concertResponse.data[index].venue.city)
-            console.log(concertResponse.data[index].venue.country)
-            console.log(concertResponse.data[index].datetime)
-            console.log("------------------------------------")
-        }
-    })
+            
+            console.log("Venue Name: " + concertResponse.data[index].venue.name);
+            console.log("Venue Location: " + concertResponse.data[index].venue.city);
+            console.log("Venue Country: " + concertResponse.data[index].venue.country);
+            var date = concertResponse.data[index].datetime;
+            var timeFormat = moment(date).format('MM/DD/YYYY');
+            console.log("Venue Date: " + timeFormat);
+            console.log("------------------------------------");
+        };
+    });
 };
 function spotifyThisSong(title) {
     if(!title){
         title="The Sign by Ace of Base"
     }
-    console.log("searching for songs")
+    console.log("------------------------------------");
+    console.log("Searching for songs...")
+    console.log("------------------------------------");
     spotify.search({ type: 'track', query: title }, function(err, data) {
         if (err) {
           return console.log('Error occurred: ' + err);
-        }
-      console.log(data.tracks.items[0].artists[0].name);
-      console.log(data.tracks.items[0].name);
-      console.log(data.tracks.items[0].href);
-      console.log(data.tracks.items[0].album.name);
-      console.log("------------------------------------")
+        };
+      console.log("Artist(s): " + data.tracks.items[0].artists[0].name);
+      console.log("Song title: " + data.tracks.items[0].name);
+      console.log("Spotify preview link: " + data.tracks.items[0].href);
+      console.log("Album: " + data.tracks.items[0].album.name);
+      console.log("------------------------------------");
       });
 };
 function movieThis(movie) {
-    console.log("searching for movies")
+    if(!movie){
+        movie="Mr. Nobody"
+    };
+    console.log("------------------------------------");
+    console.log("Searching for movies...");
+    console.log("------------------------------------");
     var queryUrl = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
     axios.get(queryUrl).then(
         function(response) {
-            console.log(response.data.Title);
-            console.log(response.data.Title);
-            console.log(response.data.Title);
-            console.log(response.data.Title);
-            console.log(response.data.Title);
-            console.log(response.data.Title);
+            console.log("Movie Title: " + response.data.Title);
+            console.log("Release Year: " + response.data.Year);
+            console.log("IMDB Rating: " + response.data.Ratings[0].Value);
+            console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
+            console.log("Country of production: " + response.data.Country);
+            console.log("Movie Language: " + response.data.Language);
+            console.log("Movie Plot: " + response.data.Plot);
+            console.log("Actors: " + response.data.Actors);
+            console.log("------------------------------------");
 
 
-        })
+        });
         
 };
 function doWhatItSays() {
-    console.log("doing what it says")
-    fs.readFile("random.txt", (err, data) => {
+    console.log("Doing what it says...");
+    fs.readFile("random.txt", 'utf8', (err, data) => {
         if (err) throw err;
         console.log(data);
       });
