@@ -47,8 +47,8 @@ function concertThis(artist) {
     });
 };
 function spotifyThisSong(title) {
-    if(!title){
-        title="The Sign by Ace of Base"
+    if(!title) {
+        title="The Sign by Ace of Base";
     }
     console.log("------------------------------------");
     console.log("Searching for songs...")
@@ -84,13 +84,21 @@ function movieThis(movie) {
             console.log("Actors: " + response.data.Actors);
             console.log("------------------------------------");
 
-
         });
         
 };
 function doWhatItSays() {
+    console.log("------------------------------------");
     console.log("Doing what it says...");
-    fs.readFile("random.txt", 'utf8', (err, data) => {
+    console.log("------------------------------------");
+    fs.readFile("random.txt", 'utf8', function(err, data) {
+        var dataArr = data.split(',');
+        if (dataArr.length ==2) {
+            query(dataArr[0], dataArr[1])
+        }
+        else if (dataArr.length ==1) {
+            query(dataArr[0])
+        };
         if (err) throw err;
         console.log(data);
       });
