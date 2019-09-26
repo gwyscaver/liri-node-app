@@ -48,7 +48,7 @@ function concertThis(artist) {
 };
 function spotifyThisSong(title) {
     if(!title) {
-        title="The Sign by Ace of Base";
+        title="The Sign";
     }
     console.log("------------------------------------");
     console.log("Searching for songs...")
@@ -56,12 +56,15 @@ function spotifyThisSong(title) {
     spotify.search({ type: 'track', query: title }, function(err, data) {
         if (err) {
           return console.log('Error occurred: ' + err);
-        };
-      console.log("Artist(s): " + data.tracks.items[0].artists[0].name);
-      console.log("Song title: " + data.tracks.items[0].name);
-      console.log("Spotify preview link: " + data.tracks.items[0].href);
-      console.log("Album: " + data.tracks.items[0].album.name);
-      console.log("------------------------------------");
+        };         
+        var songArr = data.tracks.items
+        for (let index = 0; index < songArr.length; index++) { 
+            console.log("Artist(s): " + songArr[index].artists[0].name);
+            console.log("Song title: " + songArr[index].name);
+            console.log("Spotify preview link: " + songArr[index].href);
+            console.log("Album: " + songArr[index].album.name);
+            console.log("------------------------------------");
+        }
       });
 };
 function movieThis(movie) {
@@ -92,31 +95,31 @@ function doWhatItSays() {
     console.log("Doing what it says...");
     console.log("------------------------------------");
     fs.readFile("random.txt", 'utf8', function(err, data) {
-        var dataArr = data.split(',');
-        if (dataArr.length ==2) {
-            query(dataArr[0], dataArr[1])
-        }
-        else if (dataArr.length ==1) {
-            query(dataArr[0])
-        };
-        if (err) throw err;
         console.log(data);
+        var dataArr = data.split(',');
+        console.log(dataArr[0])
+       
+            chooseCommand(dataArr[0], dataArr[1]);  
       });
 };
 
 //switch depends on the command passed; multiple outcomes instead of "if" "else", 
 // which is better for two outcomes of true and false
-switch(command) {
-    case "concert-this":
-        concertThis(query)
-        break
-        case "spotify-this-song":
-        spotifyThisSong(query)
-        break
-        case "movie-this":
-        movieThis(query)
-        break
-        case "do-what-it-says":
-        doWhatItSays(command)
-        break
-};
+function chooseCommand(command, query) {
+    switch(command) {
+        case "concert-this":
+            concertThis(query)
+            break
+            case "spotify-this-song":
+            spotifyThisSong(query)
+            break
+            case "movie-this":
+            movieThis(query)
+            break
+            case "do-what-it-says":
+            doWhatItSays(command)
+            break
+    };
+}
+
+chooseCommand(command, query)
