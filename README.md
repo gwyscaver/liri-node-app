@@ -4,7 +4,8 @@ LIRI stands for Language Interpretation and Recognition Interface. LIRI is like 
 
 [GitHub Link](https://github.com/gwyscaver/liri-node-app)
 
-[![Video Tutorial](//drive.google.com/file/d/1WvYmCfuHxeX1FuJGjuowrr6Wp9UHwMbp/view?usp=sharing)]
+[![Video Tutorial](https://drive.google.com/file/d/1WvYmCfuHxeX1FuJGjuowrr6Wp9UHwMbp/view?usp=sharing)]
+
 (https://drive.google.com/file/d/154aH6bM4usVApHeI4A9z0D3I6BI-1_SG/view?usp=sharing)
 
 # Usage
