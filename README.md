@@ -43,12 +43,15 @@ LIRI stands for Language Interpretation and Recognition Interface. LIRI is like 
 
 ## What Each Command Should Do
 
-node liri.js my-tweets `<twitter user name here>`
-* This will show your last 20 tweets and when they were created at in your terminal/bash window.
-* If no username is entered my default twitter will show.
+node liri.js concert-this `<upcoming concert name here>`
+* This will show the following information about the concerts in your terminal/bash window:
+* Venue Name: 
+* Venue Location: 
+* Venue Country: 
+* Venue Date: 07/01/2020 (corrected format)
 
 node liri.js spotify-this-song `<song name here>`
-* This will show the following information about the song in your terminal/bash window
+* This will show the following information about the song in your terminal/bash window:
 * Artist(s)
 * The song's name
 * A preview link of the song from Spotify
