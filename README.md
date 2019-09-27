@@ -2,12 +2,10 @@
 
 LIRI stands for Language Interpretation and Recognition Interface. LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a Language Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data.
 
-[GitHub](https://github.com/gwyscaver/liri-node-app)
-https://drive.google.com/file/d/154aH6bM4usVApHeI4A9z0D3I6BI-1_SG/view - automatic!
+[GitHub Link](https://github.com/gwyscaver/liri-node-app)
 
-
-
-
+[![Video Tutorial](https://drive.google.com/file/d/1WvYmCfuHxeX1FuJGjuowrr6Wp9UHwMbp/view?usp=sharing)]
+(https://drive.google.com/file/d/154aH6bM4usVApHeI4A9z0D3I6BI-1_SG/view?usp=sharing)
 
 # Usage
 1. Clone repo
@@ -43,7 +41,7 @@ https://drive.google.com/file/d/154aH6bM4usVApHeI4A9z0D3I6BI-1_SG/view - automat
     $ node liri.js spotify-this-song "ring of fire"
     $ node liri.js movie-this "interstellar"
 
-##What Each Command Should Do
+## What Each Command Should Do
 
 node liri.js my-tweets <twitter user name here>
 
